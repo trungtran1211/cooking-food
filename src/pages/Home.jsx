@@ -1,8 +1,6 @@
-
-
 import React from 'react'
-import Veggie from '../components/Veggie'
 import { Popular } from '../components/Popular'
+import { Veggie } from '../components/Veggie'
 
 export const Home = () => {
   return (
