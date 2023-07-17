@@ -66,7 +66,6 @@ export const Popular = () => {
     }
     
   }
-  console.log(popular);
   return (
       <Wrapper>
       <h3>Popular Picks</h3>

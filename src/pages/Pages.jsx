@@ -8,9 +8,8 @@ export const Pages = () => {
     <div>
         <Routes>
             <Route path='/' element={<Home/>}/>
-            <Route path='/cuisine' element={<Cuisine/>}/>
+            <Route path='/cuisine/:type' element={<Cuisine/>}/>
         </Routes>
-        <Home/>
     </div>
   )
 }
