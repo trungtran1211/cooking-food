@@ -21,4 +21,8 @@ h3 {
 }
 a {
     color: rgb(56, 56, 56);
+    text-decoration: none;
+}
+img {
+    max-width: 100%;
 }

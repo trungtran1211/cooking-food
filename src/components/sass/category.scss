@@ -1,0 +1,19 @@
+.category {
+    display: flex;
+    justify-content: center;
+    gap: 0 20px;
+    margin: 2rem 0rem;
+    &__item {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 10px 0px;
+        &:hover {
+            color: red;
+        }
+    }
+    &__active {
+        color: red;
+    }
+}

@@ -1,46 +1,56 @@
-import React, { useEffect, useState } from 'react'
-import "./Cuisine.scss"
+import React, { useEffect, useState } from 'react';
+import "./Cuisine.scss";
 import { useParams } from 'react-router-dom';
 import CircularProgress from "@mui/material/CircularProgress";
 
 export const Cuisine = () => {
-  const [cuisine, setCuisine] = useState(); 
+  const [cuisine, setCuisine] = useState([]); // Initialize with an empty array
   const [loading, setLoading] = useState(false);
 
   const params = useParams();
   const getCuisine = async (name) => {
     setLoading(true);
-    await fetch(`https://api.spoonacular.com/recipes/complexSearch?apiKey=${process.env.REACT_APP_API_KEY}&cuisine=${name}`)
-    .then((res) => res.json())
-    .then((data) => {
+    try {
+      const response = await fetch(`https://api.spoonacular.com/recipes/complexSearch?apiKey=${process.env.REACT_APP_API_KEY}&cuisine=${name}`);
+      const data = await response.json();
       setCuisine(data.results);
-    })
-    .catch((err) => {
+    } catch (err) {
       console.log(err);
-    })
-    .finally(() => {
-        setLoading(false);
-    });
-  }
+    } finally {
+      setLoading(false);
+    }
+  };
   
   useEffect(() => {
     getCuisine(params.type)
-  },[params.type]);
-
-  console.log(cuisine);
+  }, [params.type]);
 
   if (loading) {
-      return (
-        <>
-          <CircularProgress />
-        </>
-      );
-  }else {
     return (
       <>
-        <h3>tesstt222</h3>
+        <CircularProgress />
       </>
-    )
+    );
+  } else {
+    return (
+      <div className="cuisine">
+        <div className="cuisine__grid">
+          {cuisine.length > 0 ? (
+            cuisine.map((item) => (
+              <div className="cuisine__card" key={item.id}>
+                <div className="cuisine__card-img">
+                  <img src={item.image} alt="" />
+                </div>
+                <h4 className="cuisine__card-title">
+                  {item.title}
+                </h4>
+              </div>
+            ))
+          ) : (
+            <p>No cuisine data available</p>
+          )}
+        </div>
+      </div>
+    );
   }
-
-}
+};
