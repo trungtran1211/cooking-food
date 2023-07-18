@@ -27,9 +27,9 @@ export const Cuisine = () => {
 
   if (loading) {
     return (
-      <>
+      <div className='cuisine-loading'>
         <CircularProgress />
-      </>
+      </div>
     );
   } else {
     return (

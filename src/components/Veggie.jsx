@@ -2,7 +2,8 @@ import { Splide, SplideSlide } from '@splidejs/react-splide';
 import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import '@splidejs/react-splide/css';
-
+import Skeleton from 'react-loading-skeleton'
+import 'react-loading-skeleton/dist/skeleton.css'
 
 const Wrapper = styled.div`
     margin: 4rem 0rem;
@@ -80,8 +81,8 @@ export const Veggie = () => {
         {veggie.map((item) =>
             <SplideSlide key={item.id}>
               <Card>
-                <p>{item.title}</p>
-                <img src={item.image} alt={item.title}/>
+                <p>{item.title || <Skeleton />}</p>
+                <img src={item.image || <Skeleton />} alt={item.title}/>
                 <Gradient/>
               </Card>
             </SplideSlide>
